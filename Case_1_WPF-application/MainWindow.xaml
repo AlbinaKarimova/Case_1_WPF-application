@@ -1,0 +1,134 @@
+﻿<Window x:Class="Case_1_WPF_application.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Case_1_WPF_application"
+        mc:Ignorable="d"
+        Title="Расчет NPV" Height="500" Width="500" ResizeMode="NoResize">
+	<Window.Background>
+		<!-- Градиентный фон -->
+		<LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+			<GradientStop Color="LightBlue" Offset="0.0"/>
+			<GradientStop Color="SkyBlue" Offset="0.5"/>
+			<GradientStop Color="DeepSkyBlue" Offset="1.0"/>
+		</LinearGradientBrush>
+	</Window.Background>
+	<Window.Resources>
+		<Style x:Key="RoundButtonStyle" TargetType="Button">
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Grid>
+							<Ellipse Fill="White"/>
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
+
+	<Grid x:Name="grid1">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="122*"/>
+			<ColumnDefinition Width="101*"/>
+		</Grid.ColumnDefinitions>
+		<Button x:Name="count"
+				Width="99"
+				Height="45"
+				VerticalAlignment="Top"
+				Content="Расчёт"
+				Margin="97,387,0,0"
+				HorizontalAlignment="Left"
+				Style="{StaticResource RoundButtonStyle}"
+				Click="count_Click">
+			<Button.Effect>
+				<DropShadowEffect ShadowDepth="3" Direction="320" Color="Gray" Opacity="0.5" BlurRadius="5"/>
+			</Button.Effect>
+			<Button.Background>
+				<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+					<GradientStop Color="Gray" Offset="0"/>
+					<GradientStop Color="#FF644545" Offset="1"/>
+				</LinearGradientBrush>
+			</Button.Background>
+		</Button>
+		<TextBox x:Name="year"
+				 Width="150"
+				 Height="30"
+				 VerticalAlignment="Top"
+				 Margin="72,100,0,0"
+				 HorizontalAlignment="Left"
+				 TextChanged="year_TextChanged"
+				 TextAlignment="Center"
+				 Background="#FFF4EAEA">2050
+			<TextBox.Effect>
+				<DropShadowEffect ShadowDepth="3" Direction="320" Color="Gray" Opacity="0.5" BlurRadius="5"/>
+			</TextBox.Effect>
+		</TextBox>
+		<TextBox x:Name="discount_rate"
+				 Width="150"
+				 Height="30"
+				 Margin="72,253,0,0"
+				 TextAlignment="Center"
+				 TextChanged="discount_rate_TextChanged"
+				 VerticalAlignment="Top"
+				 HorizontalContentAlignment="Center"
+				 Background="#FFF4EAEA" HorizontalAlignment="Left">0,2
+			<TextBox.Effect>
+				<DropShadowEffect ShadowDepth="3" Direction="320" Color="Gray" Opacity="0.5" BlurRadius="5"/>
+			</TextBox.Effect>
+		</TextBox>
+		<Label x:Name="resultLabel"
+			   Content="{Binding Path=Value}"
+			   VerticalAlignment="Top"
+			   Background="#FFF4EAEA"
+			   Margin="47,387,54,0"
+			   Height="45"
+			   Grid.Column="1">
+			<Label.Effect>
+				<DropShadowEffect ShadowDepth="3" Direction="320" Color="Gray" Opacity="0.5" BlurRadius="5"/>
+			</Label.Effect>
+		</Label>
+		<Label x:Name="yearLabel"
+			   VerticalAlignment="Top"
+			   Background="White"
+			   Margin="91,50,72,0"
+			   Height="26"
+			   HorizontalAlignment="Center">Введите год:
+			<Label.Effect>
+				<DropShadowEffect ShadowDepth="3" Direction="320" Color="Gray" Opacity="0.5" BlurRadius="5"/>
+			</Label.Effect>
+			<Label.ToolTip>
+				<ToolTip Background="Red" Foreground="Black">
+					Укажите год, начиная с 2020 до 2050
+				</ToolTip>
+			</Label.ToolTip>
+		</Label>
+		<Label x:Name="rateLabel"
+			   VerticalAlignment="Top"
+			   Background="White"
+			   Margin="49,189,0,0"
+			   Height="26"
+			   HorizontalAlignment="Left">Введите ставку дисконтирования:
+			<Label.Effect>
+				<DropShadowEffect ShadowDepth="3" Direction="320" Color="Gray" Opacity="0.5" BlurRadius="5"/>
+			</Label.Effect>
+			<Label.ToolTip>
+				<ToolTip Background="Red" Foreground="Black">
+					Укажите ставку в диапазоне от 0 до 1
+				</ToolTip>
+			</Label.ToolTip>
+		</Label>
+		<Label x:Name="NPVLabel"
+			   VerticalAlignment="Top"
+			   Background="White"
+			   Margin="22,340,0,0"
+			   Height="26"
+			   HorizontalAlignment="Left" Grid.Column="1">Вычисленное значение NPV:
+			<Label.Effect>
+				<DropShadowEffect ShadowDepth="3" Direction="320" Color="Gray" Opacity="0.5" BlurRadius="5"/>
+			</Label.Effect>
+		</Label>
+	</Grid>
+</Window>
